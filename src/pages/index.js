@@ -106,7 +106,7 @@ class Register extends React.Component {
                   <Form.Control.Feedback className={this.state.passwordError ? "displayErrors" : 'noError'}>Password is required</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Row>
-                  <Button type="submit" className={"btn btn-primary"} disabled={((!this.state.username || !this.state.password || !this.state.email) ? true : false) ? true : false}>Register</Button>
+                  <Button type="submit" className={"btn btn-primary"} enabled="true">Register</Button>
                   <Button href="/" variant="link">Login</Button>
                 </Form.Row>
               </Form>

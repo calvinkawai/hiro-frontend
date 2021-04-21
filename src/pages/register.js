@@ -4,6 +4,10 @@ import { Form, Button, Container, Col, Row } from 'react-bootstrap';
 import Parse from "parse"
 
 
+Parse.initialize(process.env.GATSBY_APPLICATION_ID, process.env.GATSBY_JAVASCRIPT_KEY);
+Parse.serverURL = "https://parseapi.back4app.com/";
+
+
 class Register extends React.Component {
     constructor() {
         super();
