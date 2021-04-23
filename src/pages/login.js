@@ -1,40 +1,37 @@
-import React from 'react';
+import React from "react"
+import { navigate } from "gatsby"
 import { Form, Button, Modal } from 'react-bootstrap';
-import { signUp } from '../services/register'
+import { handleLogin, isLoggedIn } from "../services/auth"
 
-class Register extends React.Component {
+class Login extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
       username: '',
       password: '',
-      email: ''
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  changeHandler(event) {
-    const name = event.target.getAttribute('id');
-    const value = event.target.value;
-    console.log(value)
+  handleUpdate(event) {
     this.setState({
-      [name]: value
+      [event.target.getAttribute('id')]: event.target.value,
     })
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state)
-    signUp(this.state)
+    event.preventDefault()
+    handleLogin(this.state)
   }
 
   render() {
+    if (isLoggedIn()) {
+      navigate(`/private`)
+    }
+
     const fieldForms = [{
       'id': 'username',
-      'type': 'text'
-    }, {
-      'id': 'email',
       'type': 'text'
     }, {
       'id': 'password',
@@ -47,7 +44,7 @@ class Register extends React.Component {
           required
           id={field['id']}
           type={field['type']}
-          onChange={this.changeHandler}
+          onChange={this.handleUpdate}
         />
       </Form.Group>
     );
@@ -55,7 +52,7 @@ class Register extends React.Component {
     return (
       <Modal.Dialog>
         <Modal.Header>
-          <Modal.Title>Register Page</Modal.Title>
+          <Modal.Title>Login Page</Modal.Title>
         </Modal.Header>
         <Form onSubmit={this.handleSubmit} className="justify-content-md-center">
           <Modal.Body>
@@ -63,14 +60,14 @@ class Register extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <Form.Row>
-              <Button type="submit" className={"btn btn-primary"} disabled={( (!this.state.username || !this.state.password || !this.state.email) ? true : false) ? true : false }>Register</Button>
-              <Button href="/login" variant="link">Login</Button>
+              <Button type="submit" className={"btn btn-primary"} disabled={( (!this.state.username || !this.state.password) ? true : false) ? true : false }>Login</Button>
+              <Button href="/register" variant="link">Register</Button>
             </Form.Row>
           </Modal.Footer>
         </Form>
       </Modal.Dialog>
-    );
+    )
   }
 }
 
-export default Register;
+export default Login

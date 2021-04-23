@@ -1,17 +1,13 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import NavbarComp from "../components/NavbarComp.js"
+import Parse from "parse"
+
+console.log(Parse.User.current())
 
 // markup
 const IndexPage = () => {
   return (
-    <div>
-      <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand">HIRO</a>
-        <Link to="/register" class="btn btn-secondary btn-lg" tabindex="-1" role="button" aria-disabled="true">
-          Register
-        </Link>
-      </nav>
-    </div>
+    <NavbarComp />
   )
 }
 
