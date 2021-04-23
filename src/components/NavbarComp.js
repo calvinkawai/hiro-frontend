@@ -1,15 +1,24 @@
 import * as React from "react"
-import { Navbar, Form, Button, } from "react-bootstrap";
-import { isLoggedIn, getCurrentUser } from "../services/auth"
+import { Navbar, Form, Button, DropdownButton, Dropdown } from "react-bootstrap";
+import { isLoggedIn, getCurrentUser, handleLogout } from "../services/auth"
 
 class NavbarComp extends React.Component {
+  constructor() {
+    super()
+    this.onClick = this.onClick.bind(this)
+  }
+  onClick (event) {
+    event.preventDefault()
+    handleLogout()
+  }
   render () {
-    console.log(isLoggedIn())
     let userOrLogin;
     if (isLoggedIn()) {
-      userOrLogin = <Button variant="dark">{getCurrentUser().getUsername()}</Button>
+      userOrLogin = <DropdownButton title={ getCurrentUser().getUsername() } variant="secondary" menuAlign="right">
+        <Dropdown.Item onClick={ this.onClick } >Log Out</Dropdown.Item>
+      </DropdownButton>
     } else {
-      userOrLogin = <Button href="/login" aria-disabled="true" variant="dark">
+      userOrLogin = <Button href="/login" aria-disabled="true" variant="secondary">
         Login
       </Button>
     }

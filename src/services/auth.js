@@ -1,8 +1,14 @@
 import Parse from "parse"
 import { navigate } from "gatsby"
 
-export const isBrowser = typeof window !== "undefined"
 const getUser = () => {return Parse.User.current()}
+
+export const isLoggedIn = () => {
+  const user = getUser()
+  return user != null
+}
+
+export const getCurrentUser = () => getUser()
 
 export const handleLogin = async ({ username, password }) => {
   var user = new Parse.User()
@@ -26,9 +32,20 @@ export const handleLogin = async ({ username, password }) => {
   return false
 }
 
-export const isLoggedIn = () => {
-  const user = getUser()
-  return user != null
+export const handleLogout = async () => {
+  try {
+    await Parse.User.logOut()
+      .then(function (response){
+        navigate('/')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+      .then(function () {
+        console.log('do something later')
+      });
+  } catch (error) {
+    alert("Error: " + error.code + " " + error.message);
+  }
+  return false
 }
-
-export const getCurrentUser = () => getUser()
