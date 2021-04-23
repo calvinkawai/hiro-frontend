@@ -1,9 +1,14 @@
 import React from 'react';
-import { getCurrentUser } from '../services/auth';
+import { getCurrentUser, isLoggedIn } from '../services/auth';
 import NavbarComp from "../components/NavbarComp.js"
+import { navigate } from "gatsby"
 
 class Private extends React.Component {
+
   render() {
+    if (!isLoggedIn()) {
+      navigate('/private')
+    }
     return (
       <div className="shopping-list">
         <NavbarComp />
