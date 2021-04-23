@@ -1,12 +1,10 @@
 import * as React from "react"
+import NavbarComp from "../components/NavbarComp.js"
 
 // markup
 const IndexPage = () => {
   return (
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">HIRO</a>
-      <button type="button" class="btn btn-dark">Login</button>
-    </nav>
+    <NavbarComp />
   )
 }
 
