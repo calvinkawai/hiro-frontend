@@ -1,6 +1,7 @@
 import Parse from "parse"
 import { navigate } from "gatsby"
 
+export const isBrowser = typeof window !== "undefined"
 const getUser = () => {return Parse.User.current()}
 
 export const handleLogin = async ({ username, password }) => {
@@ -8,7 +9,6 @@ export const handleLogin = async ({ username, password }) => {
   user.set("username", username);
   user.set("password", password);
   try {
-    console.log(username)
     await user.logIn()
       .then(function (response){
         navigate('/private')
@@ -27,7 +27,6 @@ export const handleLogin = async ({ username, password }) => {
 }
 
 export const isLoggedIn = () => {
-
   const user = getUser()
   return user != null
 }

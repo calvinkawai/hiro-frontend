@@ -29,7 +29,7 @@ class Login extends React.Component {
     if (isLoggedIn()) {
       navigate(`/private`)
     }
-
+    
     const fieldForms = [{
       'id': 'username',
       'type': 'text'
