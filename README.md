@@ -4,6 +4,12 @@ hiro is a social app for tennis players.
 
 ## 🎾 Quick start
 
+0. **Install dependencies.**
+
+   ```shell
+   npm install
+   ```
+
 1. **Set up env variables.**
 
     Our backend uses Parse (managed by Back4App).
