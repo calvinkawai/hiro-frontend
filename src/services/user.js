@@ -8,16 +8,16 @@ const commitUser = (name, user) => {
   });
 }
 
-export const GetUserRatings = (user) => {
-  return user.get("ratings")
+export const GetUserTennisRatings = (user) => {
+  return user.get("tennisRatings")
 }
 
-export const GetUserAvgRating = (user) => {
-  return user.get("avg_rating")
+export const GetUserAvgTennisRating = (user) => {
+  return user.get("avgTennisRating")
 }
 
-export const SetUserRatings = (user, f, b, rs, v, o, s) => {
-  user.set("ratings", {
+export const SetUserTennisRatings = (user, f, b, rs, v, o, s) => {
+  user.set("tennisRatings", {
     "forehand": f,
     "backhand": b,
     "return_serve": rs,
@@ -25,8 +25,8 @@ export const SetUserRatings = (user, f, b, rs, v, o, s) => {
     "overheads": o,
     "serve": s
   });
-  user.set("avg_rating", (f + b + rs + v + o + s) / 6)
-  commitUser("SetUserRatings", user);
+  user.set("avgTennisRating", (f + b + rs + v + o + s) / 6)
+  commitUser("SetUserTennisRatings", user);
 }
 
 export const SetUserLocation = (user, latitude, longitude) => {
