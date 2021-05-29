@@ -8,20 +8,39 @@ const commitUser = (name, user) => {
   });
 }
 
-export const SetUserRating = (user, fh, bh, rs, vl, oh, s) => {
+export const GetUserRatings = (user) => {
+  return user.get("ratings")
+}
+
+export const GetUserAvgRating = (user) => {
+  return user.get("avg_rating")
+}
+
+export const SetUserRatings = (user, f, b, rs, v, o, s) => {
   user.set("ratings", {
-    "forehand": fh,
-    "backhand": bh,
-    "return_server": rs,
-    "volleys": vl,
-    "overheads": oh,
-    "server": s
+    "forehand": f,
+    "backhand": b,
+    "return_serve": rs,
+    "volleys": v,
+    "overheads": o,
+    "serve": s
   });
-  commitUser("SetUserRating", user);
+  user.set("avg_rating", (f + b + rs + v + o + s) / 6)
+  commitUser("SetUserRatings", user);
 }
 
 export const SetUserLocation = (user, latitude, longitude) => {
   const point = new Parse.GeoPoint({ latitude: latitude, longitude: longitude });
   user.set("location", point);
   commitUser("SetUserLocation", user);
+}
+
+export const FindNN = (user, page = 0, limit = 10) => {
+  const userGeoPoint = user.get("location")
+  const query = new Parse.Query(Parse.User)
+  query.near("location", userGeoPoint)
+  query.skip(page * limit)
+  query.limit(limit)
+  const results = await query.find()
+  return results
 }

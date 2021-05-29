@@ -18,7 +18,7 @@ class PrivateComp extends React.Component {
     // } else {
     //   console.log("location services Not Available");
     // }
-    // SetUserRating(getCurrentUser(), 1, 2, 3, 4, 5, 6)
+    // SetUserRatings(getCurrentUser(), 1, 2, 3, 4, 5, 6)
   }
   render() {
     let title;
