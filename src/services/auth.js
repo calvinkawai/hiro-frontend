@@ -1,6 +1,7 @@
 import Parse from "parse"
 import { navigate } from "gatsby"
 
+Parse.User.enableUnsafeCurrentUser()
 const getUser = () => { return Parse.User.current() }
 
 export const isLoggedIn = () => {

@@ -30,9 +30,9 @@ export const SetUserRatings = (user, f, b, rs, v, o, s) => {
 }
 
 export const SetUserLocation = (user, latitude, longitude) => {
-  const point = new Parse.GeoPoint({ latitude: latitude, longitude: longitude });
-  user.set("location", point);
-  commitUser("SetUserLocation", user);
+  const point = new Parse.GeoPoint({ latitude: latitude, longitude: longitude })
+  user.set("location", point)
+  commitUser("SetUserLocation", user)
 }
 
 export const FindNN = (user, page = 0, limit = 10) => {
@@ -41,6 +41,7 @@ export const FindNN = (user, page = 0, limit = 10) => {
   query.near("location", userGeoPoint)
   query.skip(page * limit)
   query.limit(limit)
-  const results = await query.find()
-  return results
+  // exclude current user
+  query.notEqualTo("objectId", user.id)
+  return query.find()
 }
