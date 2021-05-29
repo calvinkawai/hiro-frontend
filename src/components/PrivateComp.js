@@ -11,19 +11,19 @@ class PrivateComp extends React.Component {
       navigate(`/login`)
     }
     // How we would call user related services
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        SetUserLocation(getCurrentUser(), position.coords.latitude, position.coords.longitude);
-      });
-    } else {
-      console.log("location services Not Available");
-    }
-    SetUserTennisRatings(getCurrentUser(), 1, 2, 3, 4, 5, 6)
-    FindNN(getCurrentUser()).then(results => {
-      console.log(results)
-    })
-    console.log(GetUserAvgTennisRating(getCurrentUser()))
-    console.log(GetUserTennisRatings(getCurrentUser()))
+    // if ("geolocation" in navigator) {
+    //   navigator.geolocation.getCurrentPosition((position) => {
+    //     SetUserLocation(getCurrentUser(), position.coords.latitude, position.coords.longitude);
+    //   });
+    // } else {
+    //   console.log("location services Not Available");
+    // }
+    // SetUserTennisRatings(getCurrentUser(), 1, 2, 3, 4, 5, 6)
+    // FindNN(getCurrentUser()).then(results => {
+    //   console.log(results)
+    // })
+    // console.log(GetUserAvgTennisRating(getCurrentUser()))
+    // console.log(GetUserTennisRatings(getCurrentUser()))
   }
   render() {
     let title;
