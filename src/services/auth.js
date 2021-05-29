@@ -1,7 +1,7 @@
 import Parse from "parse"
 import { navigate } from "gatsby"
 
-const getUser = () => {return Parse.User.current()}
+const getUser = () => { return Parse.User.current() }
 
 export const isLoggedIn = () => {
   const user = getUser()
@@ -16,7 +16,7 @@ export const handleLogin = async ({ username, password }) => {
   user.set("password", password);
   try {
     await user.logIn()
-      .then(function (response){
+      .then(function (response) {
         navigate('/private')
       })
       .catch(function (error) {
@@ -35,7 +35,7 @@ export const handleLogin = async ({ username, password }) => {
 export const handleLogout = async () => {
   try {
     await Parse.User.logOut()
-      .then(function (response){
+      .then(function (response) {
         navigate('/')
       })
       .catch(function (error) {

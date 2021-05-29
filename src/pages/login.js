@@ -29,7 +29,7 @@ class Login extends React.Component {
     if (isLoggedIn()) {
       navigate(`/private`)
     }
-    
+
     const fieldForms = [{
       'id': 'username',
       'type': 'text'
@@ -37,17 +37,17 @@ class Login extends React.Component {
       'id': 'password',
       'type': 'password'
     }]
-    .map((field) =>
-      <Form.Group>
-        <Form.Label htmlFor={field['id']}>{field['id']}</Form.Label>
-        <Form.Control
-          required
-          id={field['id']}
-          type={field['type']}
-          onChange={this.handleUpdate}
-        />
-      </Form.Group>
-    );
+      .map((field) =>
+        <Form.Group>
+          <Form.Label htmlFor={field['id']}>{field['id']}</Form.Label>
+          <Form.Control
+            required
+            id={field['id']}
+            type={field['type']}
+            onChange={this.handleUpdate}
+          />
+        </Form.Group>
+      );
 
     return (
       <Modal.Dialog>
@@ -60,7 +60,7 @@ class Login extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <Form.Row>
-              <Button type="submit" className={"btn btn-primary"} disabled={( (!this.state.username || !this.state.password) ? true : false) ? true : false }>Login</Button>
+              <Button type="submit" className={"btn btn-primary"} disabled={((!this.state.username || !this.state.password) ? true : false) ? true : false}>Login</Button>
               <Button href="/register" variant="link">Register</Button>
             </Form.Row>
           </Modal.Footer>
