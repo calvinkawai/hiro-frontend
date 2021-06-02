@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { isLoggedIn } from "../services/auth"
 import { navigate } from "gatsby"
-
-const isBrowser = typeof window !== "undefined"
 
 const PrivateComp = ({ component: Component, location, ...rest }) => {
 

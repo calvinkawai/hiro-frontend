@@ -17,7 +17,7 @@ export const handleLogin = async ({ username, password }) => {
   try {
     await user.logIn()
       .then(function (response) {
-        navigate('/private')
+        navigate('/')
       })
       .catch(function (error) {
         console.log(error)
